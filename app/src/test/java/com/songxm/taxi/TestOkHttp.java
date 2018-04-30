@@ -2,8 +2,6 @@ package com.songxm.taxi;
 
 import org.junit.Test;
 
-import java.io.IOException;
-
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -34,17 +32,17 @@ public class TestOkHttp {
 
     @Test
     public void httpPost() throws Exception {
-        public static final MediaType JSON
+        final MediaType JSON
                 = MediaType.parse("application/json; charset=utf-8");
 
         OkHttpClient client = new OkHttpClient();
 
-            RequestBody body = RequestBody.create(JSON, "{""}");
+            RequestBody body = RequestBody.create(JSON, "{'namw':'songxm','age','20'}");
             Request request = new Request.Builder()
-                    .url(url)
+                    .url("http://eu.httpbin.org/post")
                     .post(body)
                     .build();
             Response response = client.newCall(request).execute();
-            return response.body().string();
+        System.out.println(response.body().string());
     }
 }
